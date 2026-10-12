@@ -1,64 +1,227 @@
-# E-Commerce Sales Data Transformation & Modeling (Power BI)
+# 📊 E-commerce Sales Data Transformation & Data Modeling using Power BI
 
-## Project Overview
-This project is part of **Data Analytics Module 2: Power BI Assignment 1**, focusing on end-to-end data preparation, cleansing, transformation, aggregation, and relational data modeling using **Power BI** and the **Power Query Editor**[cite: 3]. The objective is to build an accurate, clean, and business-ready data model from multiple related e-commerce data files[cite: 3].
+## 📌 Project Overview
+
+This project focuses on preparing, cleaning, transforming, and modeling an E-commerce sales dataset using **Microsoft Power BI and Power Query Editor**.
+
+The objective is to convert raw sales data into a structured and reliable data model by applying data cleansing techniques, calculated columns, data merging, aggregation, and relationship management.
+
+This project is part of my learning journey as an **Aspiring Data Analyst**, where I am developing practical skills in data preparation, data integration, and data modeling.
+
+## 🎯 Project Objectives
+
+* Import multiple CSV datasets into Power BI.
+* Transform and clean data using Power Query Editor.
+* Standardize customer names and correct data types.
+* Create calculated and conditional columns.
+* Merge related datasets using Order ID.
+* Identify and handle missing values and duplicate records.
+* Sort and filter sales data for analysis.
+* Perform grouping and aggregation operations.
+* Establish and validate relationships between tables.
+
+## 🛠️ Tools & Technologies
+
+* **Microsoft Power BI** — Data modeling and data preparation
+* **Power Query Editor** — Data transformation and cleansing
+* **CSV** — Source data format
+* **GitHub** — Project documentation and portfolio development
+
+## 📂 Dataset Description
+
+The project uses three datasets representing order information, product details, and sales targets.
+
+### 1. List of Orders
+
+Contains customer and order-level information.
+
+| Column        | Description                  |
+| ------------- | ---------------------------- |
+| Order ID      | Unique order identifier      |
+| Order Date    | Date the order was placed    |
+| Customer Name | Customer's name              |
+| City          | Customer's city              |
+| State         | Customer's state             |
+| Category      | Product category             |
+| Amount        | Order amount                 |
+| Profit        | Profit earned from the order |
+
+### 2. Order Details
+
+Contains product-level information associated with orders.
+
+| Column       | Description          |
+| ------------ | -------------------- |
+| Order ID     | Order identifier     |
+| Category     | Product category     |
+| Sub-Category | Product sub-category |
+| Quantity     | Quantity ordered     |
+| Amount       | Sales amount         |
+| Profit       | Profit earned        |
+
+### 3. Sales Target
+
+Contains category-wise monthly sales targets.
+
+| Column              | Description         |
+| ------------------- | ------------------- |
+| Category            | Product category    |
+| Month of Order Date | Target month        |
+| Target              | Sales target amount |
+
+## 🔄 Data Transformation & Preparation
+
+### 1. Data Import and Data Types
+
+* Imported all three CSV files into Power BI.
+* Opened the datasets in Power Query Editor.
+* Limited the List of Orders table to the first 500 rows.
+* Converted Order Date to the Date data type.
+* Changed Amount and Target to Fixed Decimal Number where applicable.
+
+### 2. Text Standardization
+
+* Converted customer names to Proper Case.
+* Standardized text formatting to improve data consistency.
+
+### 3. Custom Column Creation
+
+**Location**
+
+Combined City and State into a new column named `Location`.
+
+Example: `Chennai, Tamil Nadu`
+
+**Profit Margin**
+
+Created a custom column named `Profit Margin` using:
+
+`Profit Margin = Profit / Amount`
+
+The result is expressed as a percentage. Zero or null Amount values should be handled appropriately to avoid invalid calculations.
+
+### 4. Conditional Column
+
+Created a column named `Profit Status` based on profit values.
+
+| Condition  | Profit Status |
+| ---------- | ------------- |
+| Profit < 0 | Loss          |
+| Profit = 0 | Break-Even    |
+| Profit > 0 | Profit        |
+
+### 5. Data Merging
+
+Merged the List of Orders and Order Details tables using `Order ID`.
+
+The merged query output was named `Orders Data`.
+
+This integrates order-level information with product-level details for further analysis.
+
+### 6. Missing Values and Duplicate Handling
+
+* Identified missing values across all three datasets.
+* Evaluated whether missing values should be replaced, retained, or removed.
+* Considered the business meaning of null values before applying changes.
+* Identified duplicate records and considered whether they represented genuine duplicates or valid multiple product lines within an order.
+
+### 7. Sorting and Filtering
+
+* Sorted Orders Data by Order Date in descending order.
+* Applied a State filter to analyze orders from Tamil Nadu.
+
+## 📈 Data Grouping & Aggregation
+
+### Order Details Aggregation
+
+Duplicated the Order Details query and performed the following operations:
+
+* **Count of Order ID:** Counted order identifier occurrences.
+* **Average Profit by Category:** Calculated average profit for each product category.
+* **Total Amount by Sub-Category:** Summarized sales amounts by sub-category.
+
+### Sales Target Aggregation
+
+Duplicated the Sales Target query and grouped the data by month to calculate the total sales target for each month.
+
+These aggregations help organize sales information into meaningful summaries for business analysis.
+
+## 🧩 Data Modeling & Relationships
+
+Established relationships between the datasets using Power BI's Manage Relationships feature.
+
+| Table 1        | Table 2       | Relationship Key |
+| -------------- | ------------- | ---------------- |
+| List of Orders | Order Details | Order ID         |
+| Order Details  | Sales Target  | Category         |
+
+Validated that the relationships were active and correctly configured.
+
+**Data modeling objective:** Maintain consistent connections between order records, product details, and sales targets while supporting reliable analysis.
+
+The appropriate cardinality and filter direction should be validated against the actual data, especially where Order ID or Category appears multiple times.
+
+## 📁 Project Structure
+
+```text
+Ecommerce-Sales-PowerBI/
+│
+├── README.md
+├── Data Transformation & Data Modeling.pbix
+├── PowerBI Assignment1 - Querying Data.pdf
+├── List of Orders.csv
+├── Order Details.csv
+├── Sales Target.csv
+└── Screenshots/
+    ├── power-query-transformations.png
+    ├── data-cleaning.png
+    ├── aggregation-results.png
+    └── data-model-relationships.png
+```
+
+*Note: The folder structure above is a suggested organization. Include only files and screenshots that you actually upload to your repository.*
+
+## 📚 Key Skills Demonstrated
+
+* Data Import and Preparation
+* Data Cleaning and Validation
+* Power Query Transformations
+* Data Type Conversion
+* Custom and Conditional Columns
+* Data Merging and Integration
+* Missing Value and Duplicate Handling
+* Sorting and Filtering
+* Grouping and Aggregation
+* Relationship Management
+* Data Modeling Fundamentals
+* GitHub Project Documentation
+
+## 💡 Business Value
+
+The prepared data model provides a foundation for:
+
+* Understanding sales and profitability across product categories.
+* Identifying loss-making and break-even orders.
+* Comparing sales performance across locations.
+* Analyzing product sub-category sales.
+* Organizing monthly sales targets for comparison with sales data.
+
+These are potential analytical uses of the prepared dataset; actual business findings would require further analysis of the data.
+
+## 🚀 Learning Outcomes
+
+Through this project, I aim to strengthen my practical understanding of Power BI, Power Query Editor, data quality management, and relational data modeling.
+
+This project represents one step in my journey toward becoming a Data Analyst and building a practical portfolio of data analytics projects.
+
+## 👨‍💻 About Me
+
+I am an **Aspiring Data Analyst** interested in learning how to transform raw data into structured information that supports business decision-making.
+
+I am continuously developing my skills in data analysis, data cleaning, data modeling, and business intelligence.
+
+**My portfolio goal:** Build practical projects that demonstrate my analytical thinking, technical skills, and continuous learning.
 
 ---
 
-## Datasets Description
-The project integrates three primary datasets representing order-level, product-level, and sales target information[cite: 3]:
-1. **List of Orders**: Order ID, Order Date, Customer Name, City, State, Category, Amount, Profit[cite: 3].
-2. **Order Details**: Order ID, Category, Sub-Category, Quantity, Amount, Profit[cite: 3].
-3. **Sales Target**: Category, Month of Order Date, Target[cite: 3].
-
----
-
-## Key Tasks & Implementation Steps
-
-### 1. Data Import & Preparation
-* **Data Loading**: Imported `List of Orders.csv`, `Order Details.csv`, and `Sales Target.csv` into Power BI via Power Query Editor[cite: 3].
-* **Row Limiting & Data Types**: 
-  * Restricted the *List of Orders* table to the first 500 rows[cite: 4].
-  * Converted `Order Date` to the `Date` data type[cite: 4].
-  * Changed `Amount` and `Target` columns to fixed decimal numbers[cite: 4].
-
-### 2. Data Cleaning & Transformation
-* **Text Formatting**: Cleaned and formatted the `CustomerName` column to **Proper Case** for consistent capitalization[cite: 4].
-* **Custom Column Creation**:
-  * **Location**: Merged `City` and `State` columns into the format `City, State`[cite: 4].
-  * **Profit Margin**: Created a custom column calculated as `Profit / Amount` (expressed as a percentage)[cite: 4].
-* **Conditional Logic**: Added a conditional column named `Profit Status`[cite: 4]:
-  * If `Profit < 0` $\rightarrow$ `Loss`[cite: 4]
-  * If `Profit = 0` $\rightarrow$ `Break-Even`[cite: 4]
-  * If `Profit > 0` $\rightarrow$ `Profit`[cite: 4]
-* **Data Integration**: Merged the *List of Orders* and *Order Details* tables using `Order ID` into a unified table named `Orders Data`[cite: 4].
-
-### 3. Data Quality, Sorting & Filtering
-* **Missing & Duplicate Data**: Validated all tables for missing values and duplicate rows, applying appropriate data cleaning and deduplication strategies based on business rules.
-* **Sorting & Filtering**: Sorted the `Orders Data` table by `Order Date` in descending order and applied state-level filters (e.g., Tamil Nadu) for targeted regional analysis[cite: 5].
-
-### 4. Grouping & Aggregations
-Duplicated and aggregated source tables to analyze metrics:
-* **Order Details Duplication**: Calculated Order ID counts, Average Profit by Category, and Total Amount by Sub-Category[cite: 5].
-* **Sales Target Duplication**: Aggregated total Target by the Month of the order date[cite: 5].
-
-### 5. Relational Data Modeling
-* Established a primary relationship between **List of Orders** and **Order Details** using `Order ID`[cite: 5].
-* Established a relationship between **Order Details** and **Sales Target** using `Category`[cite: 5].
-* Managed active relationships within Power BI Model View to ensure model integrity and accurate cross-filtering[cite: 5].
-
----
-
-## Skills & Competencies Demonstrated
-* **Data Preparation & Import**: Power Query ETL workflows[cite: 6, 7].
-* **Data Cleaning**: Handling data types, text formatting, and null/duplicate management[cite: 6, 7].
-* **Business Logic & Custom Columns**: Conditional evaluation and metric derivation (Profit Margin, Profit Status)[cite: 6, 7].
-* **Data Integration**: Table merging/joins[cite: 6, 7].
-* **Data Aggregation**: Group-by operations and summarization[cite: 6, 7].
-* **Data Modeling**: Star/relational schema design and active relationship management[cite: 6, 7].
-
----
-
-## Project Deliverables
-* **Power BI File (`.pbix`)**: Contains all imported data, Power Query steps, merged tables, and active data model relationships[cite: 5].
-* **Documentation (`.pdf`)**: Includes workflow explanation and solution screenshots[cite: 5].
+⭐ If you find this project useful, feel free to explore the repository and share feedback.
